@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>IPC Commisioners Forecast Tool</title>
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+
+<body text-align="left">
+
+    <div class="box">
+	<h1><center>DRAFT Commisioners Count and Total Panel Hours Forecasting Tool</center></h1><br>
+    <p style="text-align:left; font-size: 13px;">
+    This tool is designed to forecast the number of commisioners for IPC project and total panel hours.
+    Fill the form below with the required details and click on "Forecast" to get the results.<br><br>
+    </p>
+    <p style="text-align:left; font-size: 10px;"><strong>Please note that all fields are mandatory</strong><br>
+</p>
+    <p style="text-align:left; font-size: 10px;"><strong>Disclaimer:</strong>
+    Use this tool with caution. Tool built with low sample size which may result in low accuracy. Read more about the confidence level below.
+    <br>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    
+    <form action="{{ url_for('predict')}}" method="post" class='formgroup'>
+        <div class="custom-select">
+        <table align="center" border="0" cellpadding="3" cellspacing="3"> 
+        
+        <tr align="left">
+        <td><strong><u><p style="font-size: 18px;">About the proposed development</p></u></strong></td>
+        </tr>
+
+        <tr align="left"> 
+        <td> 
+        Development type
+        </td>
+        <td>
+        <select name="dev_type" id="dev_type" required="required">
+          <option value="x"  selected disabled>---</option>
+          <option value="Coal ">Coal</option>
+          <option value="Coal seam gas">Coal seam gas</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Education">Education</option>
+          <option value="Entertainment, Tourism & Recreation">Entertainment, Tourism & Recreation</option>
+          <option value="Food Production">Food Production</option>
+          <option value="Heritage">Heritage</option>
+          <option value="Hospital and Health">Hospital and Health</option>
+          <option value="Industrial">Industrial</option>
+          <option value="Infrastructure">Infrastructure</option>
+          <option value="Mineral - Gold">Mineral - Gold</option>
+          <option value="Mineral - Silver">Mineral - Silver</option>
+          <option value="Miscellaneous">Miscellaneous</option>
+          <option value="Mixed Use">Mixed Use</option>
+          <option value="Quarry and extraction">Quarry and extraction</option>
+          <option value="Renewable Solar">Renewable Solar</option>
+          <option value="Renewable Wind">Renewable Wind</option>
+          <option value="Residential">Residential</option>
+          <option value="Seniors Housing">Seniors Housing</option>
+          <option value="Waste, sewerage and resource recovery">Waste, sewerage and resource recovery</option>
+        </select></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        Project type
+        </td>
+        <td>
+        <select name="project_type" id="project_type" required="required">
+          <option value="x" selected disabled>---</option>
+          <option value="A">A</option>
+          <option value="D">D</option>
+          <option value="DPM">DPM</option>
+          <option value="PH">PH</option>
+        </select></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        Application type
+        </td>
+        <td>
+        <select name="app_type" id="app_type" required="required">
+          <option value="x" selected disabled>---</option>
+          <option value="DA">DA</option>
+          <option value="Ministerial Request">Ministerial Request</option>
+          <option value="MOD">MOD</option>
+          <option value="Planning Proposal">Planning Proposal</option>
+          <option value="SSD">SSD</option>
+          <option value="SSD & MOD">SSD & MOD</option>
+        </select></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        Time since application was lodged with DPE (days)
+        </td>
+        <td><input type="number" name="time_in_gov" placeholder="---" required="required" /></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        No. of construction jobs
+        </td>
+        <td><input type="number" name="construction_jobs" placeholder="---" required="required" /></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        No. of operational jobs
+        </td>
+        <td><input type="number" name="operational_jobs" placeholder="---" required="required" /></td></tr>
+
+
+        <tr align="left"> 
+        <td> 
+        Capital Investment Value
+        </td>
+        <td><input type="number" name="civ" placeholder="---" required="required" /></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        Contentious level of LGA
+        </td>
+        <td>
+        <select name="lga_sensitivity" id="lga_sensitivity" required="required">
+          <option value="x" selected disabled>---</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        Socio-economic score of the LGA
+        </td>
+        <td>
+        <select name="seifa_decile" id="seifa_decile" required="required">
+          <option value="x" selected disabled>---</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select></td></tr>
+
+
+        <tr align="left"> 
+        <td> 
+        Objection by the local council
+        </td>
+        <td>
+        <select name="council_objection" id="council_objection" required="required">
+          <option value="x" selected disabled>---</option>
+          <option value="Y">Y</option>
+          <option value="N">N</option>
+        </select></td></tr>
+
+        <tr align="left">
+        <td><strong><u><p style="font-size: 18px;">Submissions made to DPE</p></u></strong></td>
+        </tr>
+
+        <tr align="left"> 
+        <td> 
+        No. of public submissions in objection
+        </td>
+        <td><input type="number" name="dpe_objections" placeholder="---" required="required" /></td></tr>
+
+        <tr align="left">
+        <td><strong><u><p style="font-size: 18px;">Triggers for referral</p></u></strong></td>
+        </tr>
+
+        <tr align="left"> 
+        <td> 
+        Reportable political donation
+        </td>
+        <td>
+        <select name="rep_political_donation" id="rep_political_donation" required="required">
+          <option value="x" selected disabled>---</option>
+          <option value="Y">Y</option>
+          <option value="N">N</option>
+        </select></td></tr>
+
+        <tr align="left"> 
+        <td> 
+        Referred under Ministerial delegation
+        </td>
+        <td>
+        <select name="min_request" id="min_request" required="required">
+          <option value="x" selected disabled>---</option>
+          <option value="Y">Y</option>
+          <option value="N">N</option>
+        </select></td></tr>
+
+        <div class="custom-select">
+        </div>
+        </table><br><br>
+        <div class="button-container">
+        <button type="submit" class="button-container">Forecast</button>
+        </div>
+    </form>
+
+   <br>
+   <p style="text-align:center; font-size: 21px;"
+<div class='pred'>
+   {{ prediction_text | safe }}<br>
+   {{ prediction_text2  | safe}}<br>
+   </div>
+   </p>
+
+<p style="text-align:left; font-size: 10px;">Technical Notes:<br>
+<br>Our webtool's performance for the number of commisioners prediction is measured using the accuracy rate of 78.4%. That is, it predicts the correct outcome in 78.4% of cases. 
+<br>For our panel hours prediction, the webtool has a root mean squared error of 25.5, meaning, on an average the predicted value will be off by +/- ~25.5 hours... <br>
+<br>We continuously work to improve these values and enhance the webtool's performance. If you have any questions or need assistance, please don't hesitate to contact us on  <a href="mailto:info@dashboardworx.com">info@datainsightsagency.com</a></p>
+<br></p>
+ </div>
+
+</body>
+</html>

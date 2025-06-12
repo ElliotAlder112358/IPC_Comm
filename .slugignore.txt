@@ -1,0 +1,89 @@
+# Development files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Test files
+tests/
+test/
+testing/
+spec/
+features/
+examples/
+coverage/
+*.test
+*.spec
+
+# Documentation
+docs/
+*.md
+*.rst
+*.txt
+*.pdf
+*.tex
+
+# Version control
+.git/
+.gitignore
+.gitmodules
+.gitattributes
+.hg/
+.svn/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Build files
+build/
+dist/
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Data files
+*.csv
+*.json
+*.xlsx
+*.db
+*.sqlite
+*.h5
+*.pkl
+*.pickle
+
+# Media files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp3
+*.mp4
+*.mov
+*.avi
+
+# Large ML files
+*.joblib
+*.pth
+*.pt
+*.bin
+*.onnx
+
+# Local development files
+.env
+*.env
+.env.local
+*.env.local

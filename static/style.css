@@ -1,0 +1,146 @@
+body {
+    background-image: url("IPC.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 65%;
+    max-width: 850px;
+    margin: 2rem auto;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+strong {
+    font-weight: 600;
+}
+
+/* Adjust the table layout to ensure consistent column widths */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    table-layout: fixed; /* This makes columns respect width settings */
+}
+
+/* Set specific widths for table columns */
+tr td:first-child {
+    width: 40%; /* Label column */
+    padding-right: 15px;
+}
+
+tr td:last-child {
+    width: 60%; /* Input column */
+}
+
+select, input[type="text"], input[type="number"] {
+    width: 100%;
+    min-width: 200px; /* Set a minimum width */
+    max-width: 300px; /* Set a maximum width */
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: #cb7037;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(203, 112, 55, 0.2);
+}
+
+select option {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+button {
+    background: linear-gradient(to right, #cb7037, #e67e22);
+    color: white;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: linear-gradient(to right, #e67e22, #cb7037);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pred {
+    margin: 1.5rem 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    color: #cb7037;
+    padding: 1rem;
+    background: rgba(203, 112, 55, 0.1);
+    border-radius: 6px;
+    border-left: 4px solid #cb7037;
+}
+
+/* Section headers */
+td strong u {
+    font-size: 1.1rem;
+    color: #cb7037;
+    text-decoration: none;
+    display: block;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+    tr td:first-child,
+    tr td:last-child {
+        width: 100%;
+        display: block;
+    }
+    
+    select, input[type="text"], input[type="number"] {
+        max-width: 100%;
+    }
+}
