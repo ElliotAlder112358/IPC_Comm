@@ -97,19 +97,28 @@ def predict():
         panel_hours = float(model2.predict(x2_df)[0])
         individual_hours = round(panel_hours, 2)
 
-        # Generate dynamic output
+        # Generate dynamic output with corrected logic
         member_hours = ""
         if mapped_no_comm == 1:
-            member_hours += f"Estimated Chair Hours: {individual_hours}"
+            member_hours += f"Estimated Chair Hours: {individual_hours} hrs"
         elif mapped_no_comm == 2:
-            member_hours += f"Estimated Chair Hours: {individual_hours}<br>"
-            member_hours += f"Estimated Member 2 Hours: {individual_hours}<br>"
-            member_hours += f"Total Panel Hours: {round(individual_hours * 2, 2)}"
+            chair_hours = individual_hours
+            member1_hours = round(chair_hours * 0.9091, 2)
+            total_hours = round(chair_hours + member1_hours, 2)
+
+            member_hours += f"Estimated Chair Hours: {chair_hours} hrs<br>"
+            member_hours += f"Estimated Member 1 Hours: {member1_hours} hrs<br>"
+            member_hours += f"Total Panel Hours: {total_hours} hrs"
         elif mapped_no_comm == 3:
-            member_hours += f"Estimated Chair Hours: {individual_hours}<br>"
-            member_hours += f"Estimated Member 2 Hours: {individual_hours}<br>"
-            member_hours += f"Estimated Member 3 Hours: {individual_hours}<br>"
-            member_hours += f"Total Panel Hours: {round(individual_hours * 3, 2)}"
+            chair_hours = individual_hours
+            member1_hours = round(chair_hours * 0.9457, 2)
+            member2_hours = round(chair_hours * 0.9406, 2)
+            total_hours = round(chair_hours + member1_hours + member2_hours, 2)
+
+            member_hours += f"Estimated Chair Hours: {chair_hours} hrs<br>"
+            member_hours += f"Estimated Member 1 Hours: {member1_hours} hrs<br>"
+            member_hours += f"Estimated Member 2 Hours: {member2_hours} hrs<br>"
+            member_hours += f"Total Panel Hours: {total_hours} hrs"
 
         return render_template(
             "index.html",
